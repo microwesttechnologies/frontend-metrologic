@@ -8,26 +8,51 @@ import { GetAllDataMetrologicUseCase } from 'Core/Domain/UseCase/GetAllDataMetro
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  dataMetrologic: Array<DataMetrologic> = [];
+  dataMetrologic!: any;
   response: any;
-  buttons = ['Barranquilla', 'Bogota', 'Cali', 'Medellin', 'Bucaramanga'];
+  city: string = '';
+  lat: number = 0;
+  lon: number = 0;
+  buttons = ['Barranquilla', 'Bogota', 'Cali', 'Medellin'];
 
   ngOnInit(): void {
-    this.getAllDataMetrologic();
+
   }
 
-  getAllDataMetrologic() {
-    this.response = this._getAllDataMetrologicUseCase
-      .getAllDataMetrologic(6.2476, 75.565)
-      .subscribe(
-        (data) => {
-          this.dataMetrologic = data;
-          console.log(data);
-        },
-        (error: any) => {
-          console.error('Error al obtener los datos meteorologicos:', error);
-        }
-      );
+  executeQuery(city: string) {
+    switch(city) {
+      case 'Bogota':
+        this.lon = 4.711;
+        this.lat = 74.0721;
+        break;
+      case 'Medellin':
+        this.lon = 6.2476;
+        this.lat = 75.5658;
+        break;
+      case 'Cali':
+        this.lon = 3.4516;
+        this.lat = 76.532;
+        break;
+      case 'Barranquilla':
+        this.lon = 11.0041;
+        this.lat = 74.807;
+        break;
+      default:
+        return;
+    }
+    this.getAllDataMetrologic(this.lon, this.lat);
+  }
+
+  getAllDataMetrologic(lat: number, lon: number): void {
+    this._getAllDataMetrologicUseCase.getAllDataMetrologic(lat, lon).subscribe(
+      (data) => {
+        this.dataMetrologic = data;
+        console.log(this.dataMetrologic);
+      },
+      (error: any) => {
+        console.error('Error al obtener los datos meteorológicos:', error);
+      }
+    );
   }
 
   constructor(

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 
 @Component({
@@ -10,5 +10,21 @@ import { AccordionModule } from 'primeng/accordion';
   imports: [AccordionModule]
 })
 export class AcordeonComponent {
+  @Input() deg!: string;
+  @Input() speed!: string;
+  @Input() temp!: string;
+  @Input() temp_max!: string;
+  @Input() timeQuery!: string;
+  @Input() dateFive!: string;
 
+
+  constructor() {
+    this.deg="";
+    this.speed="";
+    this.temp="";
+    this.temp_max="";
+    this.timeQuery="";
+    this.dateFive="";
+
+  }
 }

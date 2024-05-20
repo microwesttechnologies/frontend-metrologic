@@ -8,6 +8,8 @@ import { GetAllDataMetrologicService } from 'Core/Infraestructura/driver-adapter
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetAllDataMetrologicUseCase } from 'Core/Domain/UseCase/GetAllDataMetrologicUseCase';
+import { ButtonModule } from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -17,6 +19,8 @@ import { GetAllDataMetrologicUseCase } from 'Core/Domain/UseCase/GetAllDataMetro
     ComponentsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ButtonModule,
+    AccordionModule
   ],
   exports: [DashboardComponent],
   providers: [

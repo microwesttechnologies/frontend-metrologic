@@ -2,7 +2,10 @@
   <div class="contens justify-content-center align-items-center flex h-10rem">
     <div class="grid w-6 text-center">
       <div class="col text-center" *ngFor="let button of buttons">
-        <app-button [label]="button"></app-button>
+        <app-button
+          [label]="button"
+          (click)="executeQuery(button)"
+        ></app-button>
       </div>
     </div>
   </div>
@@ -18,6 +21,26 @@
         </div>
       </div>
     </div>
-    <div class="col-4"><app-acordeon></app-acordeon></div>
+    <div class="col-4" >
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Direccion del viento">
+          <p>{{ dataMetrologic?.deg }}°</p>
+        </p-accordionTab>
+        <p-accordionTab header="Velocidad del viento">
+          <p>{{ dataMetrologic?.speed }} m/s</p>
+        </p-accordionTab>
+        <p-accordionTab header="Temperatura actual">
+          <p>{{ dataMetrologic?.temp }} °C</p>
+        </p-accordionTab>
+        <p-accordionTab header="Temperatura Maxima">
+          <p>{{ dataMetrologic?.temp_max }} °C</p>
+        </p-accordionTab>
+        <p-accordionTab header="Fecha de registro">
+          <p>
+            {{ dataMetrologic?.timeQuery }}
+          </p>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
   </div>
 </div>
